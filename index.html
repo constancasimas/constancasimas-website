@@ -1,0 +1,1876 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Constança Simas - Conductor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Raleway:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      :root {
+        --cream: #ffffff;
+        --dark: #1a1814;
+        --mid: #5a5448;
+        --accent: #8b6f52;
+        --light-line: rgba(90, 84, 72, 0.18);
+        --nav-h: 70px;
+      }
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: var(--nav-h);
+        overflow-x: hidden;
+      }
+      body {
+        background: var(--cream);
+        color: var(--dark);
+        font-family: 'Raleway', sans-serif;
+        font-weight: 300;
+        font-size: 15px;
+        line-height: 1.7;
+        overflow-x: hidden;
+      }
+
+      /* NAV */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        height: var(--nav-h);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 52px;
+        background: var(--cream);
+        border-bottom: 1px solid var(--light-line);
+        transition: box-shadow 0.3s;
+      }
+      nav.scrolled {
+        box-shadow: 0 2px 24px rgba(0, 0, 0, 0.06);
+      }
+      .nav-logo {
+        font-family: 'Bitter', serif;
+        font-weight: 300;
+        font-size: 1.25rem;
+        letter-spacing: 0.04em;
+        color: var(--dark);
+        text-decoration: none;
+      }
+      .nav-links {
+        display: flex;
+        gap: 36px;
+        list-style: none;
+      }
+      .nav-links a {
+        font-size: 0.75rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--mid);
+        text-decoration: none;
+        transition: color 0.25s;
+      }
+      .nav-links a:hover {
+        color: var(--dark);
+      }
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        background: none;
+        border: none;
+        padding: 4px;
+      }
+      .hamburger span {
+        display: block;
+        width: 24px;
+        height: 1px;
+        background: var(--dark);
+        transition: 0.3s;
+      }
+      .hamburger.open span:nth-child(1) {
+        transform: translateY(6px) rotate(45deg);
+      }
+      .hamburger.open span:nth-child(2) {
+        opacity: 0;
+      }
+      .hamburger.open span:nth-child(3) {
+        transform: translateY(-6px) rotate(-45deg);
+      }
+      .mobile-menu {
+        display: none;
+        position: fixed;
+        top: var(--nav-h);
+        left: 0;
+        right: 0;
+        background: var(--cream);
+        border-bottom: 1px solid var(--light-line);
+        padding: 28px;
+        z-index: 99;
+        flex-direction: column;
+        gap: 22px;
+      }
+      .mobile-menu.open {
+        display: flex;
+      }
+      .mobile-menu a {
+        font-size: 0.78rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--mid);
+        text-decoration: none;
+      }
+
+      /* SECTIONS */
+      section {
+        padding: 100px 52px;
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+      h2 {
+        font-family: 'Bitter', serif;
+        font-weight: 300;
+        font-size: clamp(2rem, 4vw, 3.2rem);
+        letter-spacing: 0.02em;
+        margin-bottom: 52px;
+        line-height: 1.15;
+      }
+
+      /* HOME */
+      #home {
+        padding-top: calc(var(--nav-h) + 48px);
+        padding-bottom: 60px;
+        max-width: 1100px;
+        margin: 0 auto;
+        padding-left: 52px;
+        padding-right: 52px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+      }
+      .home-title {
+        text-align: center;
+        font-family: 'Bitter', serif;
+        font-weight: 300;
+        font-size: clamp(1.4rem, 3vw, 2rem);
+        letter-spacing: 0.04em;
+        color: var(--dark);
+      }
+      .home-title .sep {
+        color: var(--accent);
+        margin: 0 12px;
+        font-weight: 300;
+      }
+      .home-title .role {
+        font-style: normal;
+        font-weight: 300;
+      }
+      .home-image {
+        width: 100%;
+        max-width: 540px;
+      }
+      .home-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 16px;
+      }
+      .photo-placeholder {
+        width: 100%;
+        background: #f0ede8;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        color: var(--accent);
+        font-size: 0.75rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        text-align: center;
+        padding: 60px 20px;
+        border-radius: 16px;
+      }
+
+      /* REVIEWS */
+      #reviews {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 52px 80px;
+      }
+      .review-item {
+        display: grid;
+        grid-template-columns: 420px 1fr;
+        gap: 60px;
+        align-items: center;
+        padding: 60px 0;
+        border-top: 1px solid var(--light-line);
+      }
+      .review-item:last-child {
+        border-bottom: none;
+      }
+      .review-item:nth-child(even) {
+        direction: rtl;
+      }
+      .review-item:nth-child(even) > * {
+        direction: ltr;
+      }
+      .review-media img {
+        width: 100%;
+        aspect-ratio: 3/2;
+        object-fit: cover;
+        display: block;
+        border-radius: 12px;
+      }
+      .review-img-placeholder {
+        width: 100%;
+        aspect-ratio: 3/2;
+        background: #f0ede8;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 12px;
+        font-size: 0.75rem;
+        color: var(--accent);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .review-video-slot {
+        width: 100%;
+        aspect-ratio: 16/9;
+        background: #f0ede8;
+        border-radius: 12px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .review-video-slot iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+      .review-video-slot .video-notice {
+        font-size: 0.75rem;
+        color: var(--accent);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        text-align: center;
+        padding: 20px;
+      }
+      .review-body {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      .review-context {
+        font-size: 0.72rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+      .review-quote {
+        font-family: 'Bitter', serif;
+        font-style: italic;
+        font-size: 0.88rem;
+        line-height: 1.75;
+        color: var(--mid);
+        border-left: none;
+        padding-left: 0;
+        margin: 0;
+      }
+      .review-attribution {
+        font-size: 0.78rem;
+        letter-spacing: 0.1em;
+        color: var(--dark);
+        text-transform: uppercase;
+      }
+      .review-attribution em {
+        text-transform: none;
+        font-style: italic;
+        letter-spacing: 0;
+      }
+
+      /* ABOUT */
+      #about {
+        border-top: 1px solid var(--light-line);
+      }
+      .about-inner {
+        max-width: 100%;
+        margin: 0;
+      }
+      .about-inner p {
+        margin-bottom: 20px;
+        color: #3a3630;
+      }
+      .about-photo-inline {
+        width: 100%;
+        margin: 36px 0;
+        display: block;
+      }
+      .about-photo-inline img {
+        width: 100%;
+        aspect-ratio: 16/9;
+        object-fit: cover;
+        border-radius: 12px;
+        display: block;
+      }
+      .about-photo-inline .photo-placeholder {
+        aspect-ratio: 16/9;
+        border-radius: 12px;
+      }
+      .about-quote-block {
+        margin: 36px 0;
+      }
+      .about-quote-block blockquote {
+        font-family: 'Bitter', serif;
+        font-style: italic;
+        font-size: 0.88rem;
+        line-height: 1.75;
+        color: var(--mid);
+        border-left: none;
+        padding-left: 0;
+        margin: 0;
+      }
+      .lang-toggle {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 36px;
+      }
+      .lang-btn {
+        background: none;
+        border: 1px solid var(--light-line);
+        padding: 6px 18px;
+        font-family: 'Raleway', sans-serif;
+        font-size: 0.72rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--mid);
+        cursor: pointer;
+        transition: background 0.2s, color 0.2s, border-color 0.2s;
+      }
+      .lang-btn.active {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: #fff;
+      }
+      .lang-content {
+        display: none;
+      }
+      .lang-content.active {
+        display: block;
+      }
+
+      /* CALENDAR */
+      #calendar {
+        border-top: 1px solid var(--light-line);
+      }
+      .season-block {
+        margin-bottom: 64px;
+      }
+      .season-label {
+        font-family: 'Bitter', serif;
+        font-weight: 300;
+        font-size: clamp(1.3rem, 2.5vw, 1.7rem);
+        letter-spacing: 0.08em;
+        color: var(--accent);
+        border-bottom: 1px solid var(--light-line);
+        padding-bottom: 14px;
+        margin-bottom: 0;
+        text-transform: uppercase;
+      }
+      .cal-row {
+        display: grid;
+        grid-template-columns: 110px 1fr;
+        gap: 0 36px;
+        padding: 26px 0;
+        border-bottom: 1px solid var(--light-line);
+        align-items: start;
+      }
+      .season-block:last-of-type .cal-row:last-child {
+        border-bottom: none;
+      }
+      .cal-date {
+        font-family: 'Bitter', serif;
+        font-size: 1rem;
+        font-weight: 300;
+        color: var(--accent);
+        letter-spacing: 0.04em;
+        line-height: 1.5;
+        padding-top: 2px;
+      }
+      .cal-right {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+      }
+      .cal-title {
+        font-family: 'Bitter', serif;
+        font-weight: 400;
+        font-size: 1.15rem;
+        line-height: 1.3;
+        color: var(--dark);
+      }
+      .cal-ensemble {
+        font-size: 0.72rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--mid);
+        margin-top: 2px;
+      }
+      .cal-location {
+        font-size: 0.72rem;
+        color: var(--mid);
+        font-style: italic;
+      }
+      .cal-programme {
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+      .cal-programme span {
+        font-size: 0.82rem;
+        color: #4a4540;
+        line-height: 1.5;
+      }
+      .cal-programme .soloist {
+        font-size: 0.75rem;
+        color: var(--mid);
+        font-style: italic;
+      }
+
+      /* STICKY SEASON NAV */
+      .season-nav {
+        position: fixed;
+        right: 24px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 200;
+        width: fit-content;
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      .season-nav.visible {
+        visibility: visible;
+        opacity: 1;
+      }
+      .season-nav ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        align-items: flex-end;
+        margin: 0;
+        padding: 0;
+      }
+      .season-pill {
+        display: block;
+        font-family: 'Raleway', sans-serif;
+        font-size: 0.65rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--mid);
+        text-decoration: none;
+        border: 1px solid var(--light-line);
+        padding: 6px 12px;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(4px);
+        white-space: nowrap;
+        opacity: 0.55;
+        transition: background 0.2s, color 0.2s, border-color 0.2s, opacity 0.2s;
+      }
+      .season-pill:hover,
+      .season-pill.active {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: #fff;
+        opacity: 1;
+      }
+
+      /* VIDEOS */
+      #videos {
+        border-top: 1px solid var(--light-line);
+      }
+      .notice {
+        background: #f0ebe2;
+        border: 1px solid rgba(139, 111, 82, 0.4);
+        padding: 16px 22px;
+        margin-bottom: 40px;
+        font-size: 0.8rem;
+        color: var(--mid);
+        line-height: 1.6;
+      }
+      .notice strong {
+        color: var(--accent);
+      }
+      .notice code {
+        font-size: 0.78rem;
+        background: rgba(0, 0, 0, 0.05);
+        padding: 1px 4px;
+      }
+      .videos-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 36px;
+      }
+      .video-card {
+        background: #ede9e2;
+        overflow: hidden;
+      }
+      .video-embed {
+        position: relative;
+        padding-bottom: 56.25%;
+        height: 0;
+        overflow: hidden;
+      }
+      .video-embed iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+      .video-caption {
+        padding: 16px 20px;
+      }
+      .video-caption p {
+        font-family: 'Bitter', serif;
+        font-style: italic;
+        font-size: 1rem;
+        color: var(--dark);
+      }
+      .video-caption .video-orch {
+        font-style: normal;
+        font-family: 'Raleway', sans-serif;
+        font-size: 0.7rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--mid);
+        margin-top: 4px;
+      }
+
+      /* CONTACT */
+      #contact {
+        border-top: 1px solid var(--light-line);
+        text-align: center;
+      }
+      #contact h2 {
+        margin-bottom: 20px;
+      }
+      #contact p {
+        color: var(--mid);
+        margin-bottom: 12px;
+      }
+      #contact a {
+        font-family: 'Bitter', serif;
+        color: var(--dark);
+        text-decoration: none;
+        border-bottom: 1px solid var(--accent);
+        padding-bottom: 2px;
+        transition: color 0.2s;
+      }
+      #contact a:hover {
+        color: var(--accent);
+      }
+
+      /* CONTACT PHOTO */
+      .contact-photo {
+        margin-top: 48px;
+        width: 100%;
+        max-width: 324px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .contact-photo img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 16px;
+      }
+      .contact-photo-placeholder {
+        width: 100%;
+        aspect-ratio: 3/4;
+        background: #f0ede8;
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.75rem;
+        color: var(--accent);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      /* FOOTER */
+      footer {
+        border-top: 1px solid var(--light-line);
+        padding: 32px 52px;
+        text-align: center;
+        font-size: 0.68rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #b0a898;
+      }
+      footer img {
+        display: block;
+        margin: 0 auto 18px;
+        height: 150px;
+      }
+
+      /* ANIMATIONS */
+      .fade-in {
+        opacity: 0;
+        transform: translateY(18px);
+        transition: opacity 0.7s ease, transform 0.7s ease;
+      }
+      .fade-in.visible {
+        opacity: 1;
+        transform: none;
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 860px) {
+        nav {
+          padding: 0 24px;
+        }
+        .nav-links {
+          display: none;
+        }
+        .hamburger {
+          display: flex;
+        }
+        section {
+          padding: 72px 24px;
+          width: 100%;
+        }
+        #home {
+          padding-left: 24px;
+          padding-right: 24px;
+        }
+        #reviews {
+          padding: 0 24px 60px;
+          width: 100%;
+        }
+        .review-item {
+          grid-template-columns: 1fr;
+          gap: 28px;
+        }
+        .review-item:nth-child(even) {
+          direction: ltr;
+        }
+        .about-inner {
+          max-width: 100%;
+        }
+        .cal-row {
+          grid-template-columns: 80px 1fr;
+          gap: 0 20px;
+        }
+        .videos-grid {
+          grid-template-columns: 1fr;
+        }
+        .season-nav {
+          right: 12px;
+        }
+        .season-pill {
+          font-size: 0.6rem;
+          padding: 5px 8px;
+        }
+      }
+      @media (max-width: 480px) {
+        .cal-row {
+          grid-template-columns: 1fr;
+        }
+        .cal-date {
+          margin-bottom: 6px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAV -->
+    <nav id="navbar">
+      <a href="#home" class="nav-logo">Constança Simas</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#calendar">Calendar</a></li>
+        <li><a href="#videos">Videos</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#about">About</a>
+      <a href="#calendar">Calendar</a>
+      <a href="#videos">Videos</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <!-- HOME -->
+    <section id="home">
+      <div class="home-title fade-in">Constança Simas<span class="sep">|</span><span class="role">Conductor</span></div>
+      <div class="home-image fade-in">
+        <img
+          src="photo-home.jpg"
+          alt="Constança Simas"
+          onerror="this.outerHTML='<div class='photo-placeholder'><span>Save your photo as photo-home.jpg</span></div>'"
+        />
+      </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section id="reviews">
+      <div class="review-item fade-in">
+        <div class="review-media">
+          <div class="review-video-slot">
+            <iframe
+              src="https://www.youtube.com/embed/hza17bRVmp0"
+              loading="lazy"
+              allowfullscreen
+              title="Welsh National Opera"
+            ></iframe>
+          </div>
+        </div>
+        <div class="review-body">
+          <p class="review-context">Conducting Showcase &mdash; Welsh National Opera</p>
+          <blockquote class="review-quote">
+            The orchestra had hardly played together because of Covid and were seated to accommodate social distancing
+            with all the added difficulties that brings, so not an easy situation for a young conductor. (...) The
+            orchestra felt very quickly at ease, this was commented on by many seasoned professional players, and she
+            displayed a calm authority way beyond her years and experience.
+          </blockquote>
+          <p class="review-attribution">David Jones</p>
+        </div>
+      </div>
+      <div class="review-item fade-in">
+        <div class="review-media">
+          <img
+            src="review-nyo.jpg"
+            alt="National Youth Orchestra - Spring Residency"
+            onerror="this.outerHTML='<div class='review-img-placeholder'><span>Save as review-nyo.jpg</span></div>'"
+          />
+        </div>
+        <div class="review-body">
+          <p class="review-context">National Youth Orchestra of Great Britain &mdash; Spring Residency</p>
+          <blockquote class="review-quote">
+            If you went straight to your seat for the official 7.30pm kick-off of the National Youth Orchestra's Ignite
+            concert, you missed the real start of the fun. Half an hour earlier, in the Royal Festival Hall's Clore
+            Ballroom, a brass fanfare burst forth (...) and all eyes turned to the warm-up act (yes, it was also NYO,
+            conducted by Constança Simas). The spotlight hopped from one orchestral group to the next, the performers
+            scattered around the space, for what turned out to be more than half an hour of music. No half-measures
+            here.
+          </blockquote>
+          <p class="review-attribution">Rebecca Franks &mdash; <em>The Times</em></p>
+        </div>
+      </div>
+    </section>
+    <!-- ABOUT -->
+    <section id="about">
+      <h2 class="fade-in">About</h2>
+
+      <div class="lang-toggle fade-in">
+        <button class="lang-btn active" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" onclick="setLang('pt')">PT</button>
+      </div>
+
+      <!-- ENGLISH -->
+      <div class="lang-content active" id="about-en">
+        <div class="about-inner fade-in">
+          <p>
+            In recent years, Constança continued to work with numerous orchestras in Portugal, such as the Gulbenkian
+            Orchestra, the Algarve Orchestra, the Orquestra das Beiras, the Portuguese Pop Orchestra, the Orquestra do
+            Norte, the Orquestra sem Fronteiras, and the Orquestra Clássica do Centro. This season she returned to the
+            National Youth Orchestra of Great Britain (NYO) as associate conductor of the Winter Residency. She has
+            worked with NYO since 2023, leading the NYO Open programme and conducting both the NYO and NYO Inspire in
+            the Spring, Summer, and Autumn programmes, with tours across the United Kingdom.
+          </p>
+
+          <p>
+            Constança has conducted several youth international orchestra residencies across Portugal (Gestos 2025,
+            Estágio de Góis 2025, Estágio JODB 2026). In 2023/2024, she held the position of conductor and coordinator
+            of the Zohra Orchestra, where she was responsible for teaching orchestral conducting to young Afghan women.
+            Internationally, she conducted the European Doctors Orchestra in 2024 at the Glasshouse in Newcastle and
+            also made her debut with the Southbank Sinfonia in London.
+          </p>
+
+          <p>
+            She has served as assistant conductor in various productions with the BBC National Orchestra of Wales, the
+            Welsh National Opera, the Royal Northern Sinfonia, and the Metropolitana Orchestra of Lisbon. At the Rivoli
+            Theatre in Porto, she was the music director for the opera <em>Lugar Comum</em> by Sofia Sousa Rocha and the
+            Contratempus Quartet, which premiered in November 2022.
+          </p>
+
+          <p>
+            As a participant in the WoCo Gateshead 2022–24 program, she occasionally conducts the Royal Northern
+            Sinfonia and has also received mentorship from Marin Alsop as part of the Taki Alsop Conducting Fellowship.
+            In 2021–2022, she was the resident conductor for the Young Women Opera Makers at the Académie du Festival
+            Aix-en-Provence and a fellow of the Georgia Symphony Orchestra programme in Atlanta.
+          </p>
+
+          <p>
+            Constança is proactive in creating concerts with messages and concepts relevant to today's world, having
+            premiered works by Portuguese composers and produced performances aimed at reaching more diverse audiences.
+            As part of this mission, she also conducted concerts from the Maratonas com Orquestra de Bolso series with
+            the Orquestra sem Fronteiras in June 2023 and May 2025.
+          </p>
+        </div>
+
+        <div class="about-photo-inline fade-in">
+          <img
+            src="photo-about.jpg"
+            alt="Constança Simas"
+            onerror="this.outerHTML='<div class='photo-placeholder' style='aspect-ratio:16/9'><span>Save as photo-about.jpg</span></div>'"
+          />
+        </div>
+
+        <div class="about-inner fade-in">
+          <p>
+            In 2021, Constança completed her Master's degree in Orchestral Conducting with Distinction at the Royal
+            Welsh College of Music and Drama, studying under Professor David Jones. She began her studies in Lisbon,
+            earning her Bachelor's degree in Orchestral Conducting at the Academia Nacional Superior de Orquestra
+            Metropolitana in Lisbon, where she studied with Professor Jean-Marc Burfin. She received several awards for
+            her performance at the College, granted both by the institution itself and by the Calouste Gulbenkian
+            Foundation in Portugal.
+          </p>
+
+          <p>
+            Throughout her career, she has had the opportunity to conduct the Malta Philharmonic Orchestra, the Athens
+            Philharmonia Orchestra, the Ealing Symphony Orchestra and Choir, the Northampton Symphony Orchestra, and the
+            North Staffordshire Symphony Orchestra. She has also been mentored by internationally renowned conductors
+            such as Péter Eötvös, Marin Alsop, Johannes Schlaefli, Baldur Brönnimann, Carlo Rizzi, Ryan Bancroft, Magnus
+            Lindberg, Elena Schwarz, Jean-Sébastien Béréau, Scott Sandmeier, Emilio Pomàrico, Robert Delcroix, and
+            Michalis Economou.
+          </p>
+
+          <div class="about-quote-block">
+            <blockquote>
+              What first amazed me about conducting were the infinite possibilities of interpretation and understanding
+              of orchestral music. As I'm growing I notice that my love for music has a lot more to do with the empathy
+              and vulnerability of getting an orchestra together to achieve a cohesive vision, creating music that is
+              vibrant and alive.
+            </blockquote>
+          </div>
+        </div>
+      </div>
+
+      <!-- PORTUGUESE -->
+      <div class="lang-content" id="about-pt">
+        <div class="about-inner fade-in">
+          <p>
+            Nos últimos anos, Constança tem continuado a trabalhar com inúmeras orquestras em Portugal, como a Orquestra
+            Gulbenkian, a Orquestra do Algarve, a Orquestra das Beiras, a Orquestra Pop Portuguesa, a Orquestra do
+            Norte, a Orquestra sem Fronteiras e a Orquestra Clássica do Centro.
+          </p>
+
+          <p>
+            Nesta temporada, regressou à National Youth Orchestra of Great Britain (NYO) como maestrina associada da
+            Residência de Inverno. Tem colaborado com a NYO desde 2023, liderando o programa NYO Open e dirigindo tanto
+            a NYO como a NYO Inspire nos programas de Primavera, Verão e Outono, com digressões pelo Reino Unido.
+            Recentemente, Constança dirigiu várias residências orquestrais juvenis em Portugal (Gestos 2025, Estágio de
+            Góis 2025, Estágio JODB 2026). Em 2023/2024, ocupou o cargo de maestrina e coordenadora da Orquestra Zohra,
+            onde foi responsável pelo ensino de direção orquestral a jovens mulheres afegãs.
+          </p>
+
+          <p>
+            A nível internacional, dirigiu a European Doctors Orchestra em 2024 na Glasshouse em Newcastle e estreou-se
+            também com a Southbank Sinfonia em Londres. Exerceu funções de maestrina assistente em várias produções com
+            a BBC National Orchestra of Wales, a Welsh National Opera, a Royal Northern Sinfonia e a Orquestra
+            Metropolitana de Lisboa. No Teatro Rivoli do Porto foi diretora musical da Ópera <em>Lugar Comum</em> por
+            Sofia Sousa Rocha e o Quarteto Contratempus, que estreou em Novembro de 2022.
+          </p>
+
+          <p>
+            Como participante do programa WoCo Gateshead 2022–24, dirige esporadicamente a Royal Northern Sinfonia e
+            recebeu também mentoria de Marin Alsop como parte da Taki Alsop Conducting Fellowship. Em 2021/2022 foi
+            maestra residente do Young Women Opera Makers da Académie du Festival Aix-en-Provence e fellow do programa
+            da Georgia Symphony Orchestra em Atlanta.
+          </p>
+
+          <p>
+            Constança é proativa em criar concertos com mensagens e conceitos relevantes para a actualidade, tendo
+            estreado obras por compositores Portugueses e produzido espectáculos focados em atingir públicos mais
+            diversos. Como parte desta missão dirigiu também concertos das Maratonas com Orquestra de Bolso da Orquestra
+            sem Fronteiras em Junho de 2023 e Maio de 2025.
+          </p>
+        </div>
+
+        <div class="about-photo-inline fade-in">
+          <img
+            src="photo-about.jpg"
+            alt="Constança Simas"
+            onerror="this.outerHTML='<div class='photo-placeholder' style='aspect-ratio:16/9'><span>Save as photo-about.jpg</span></div>'"
+          />
+        </div>
+
+        <div class="about-inner fade-in">
+          <p>
+            Constança terminou em 2021 o mestrado de Direcção de Orquestra com Distinção no Royal Welsh College of Music
+            and Drama, na classe do Professor David Jones. Iniciou os seus estudos em Lisboa completando a licenciatura
+            também em Direção de Orquestra na Academia Nacional Superior de Orquestra Metropolitana em Lisboa, onde
+            estudou com o Professor Jean-Marc Burfin. Ganhou vários prémios pela sua prestação no College, presenteados
+            tanto pela própria instituição como também pela Fundação Calouste Gulbenkian em Portugal.
+          </p>
+
+          <p>
+            No seu percurso teve a oportunidade de dirigir a Malta Philharmonic Orchestra, a Athens Philharmonia
+            Orchestra, a Ealing Symphony Orchestra e coro, a Northampton Symphony Orchestra e a North Staffordshire
+            Symphony Orchestra. Teve também como mentores os Maestros de reputação internacional Péter Eötvös, Marin
+            Alsop, Johannes Schlaefli, Baldur Brönnimann, Carlo Rizzi, Ryan Bancroft, Magnus Lindberg, Elena Schwarz,
+            Jean-Sébastien Béréau, Scott Sandmeier, Emilio Pomàrico, Robert Delcroix e Michalis Economou.
+          </p>
+
+          <div class="about-quote-block">
+            <blockquote>
+              O que primeiro me fascinou na direção de orquestra foram as infinitas possibilidades de interpretação e
+              compreensão da música orquestral. À medida que vou crescendo, percebo que o meu amor pela música tem muito
+              mais a ver com a empatia e a vulnerabilidade de reunir uma orquestra em torno de uma visão coesa, criando
+              música que seja vibrante e viva.
+            </blockquote>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CALENDAR -->
+    <!-- Season definition: Sep 1 of year X to Aug 31 of year X+1 -->
+    <section id="calendar">
+      <h2 class="fade-in">Calendar</h2>
+
+      <!--
+  ═══════════════════════════════════════════════════════
+  2026/27 SEASON — UNCOMMENT WHEN READY TO PUBLISH
+  ═══════════════════════════════════════════════════════
+  <div class="season-block fade-in" id="season-2627">
+    <div class="season-label">2026/27 Season</div>
+
+    <div class="cal-row">
+      <div class="cal-date">Jan<br>2027</div>
+      <div class="cal-right">
+        <div class="cal-title">New Engagement</div>
+        <div class="cal-ensemble">Orchestra / Ensemble</div>
+        <div class="cal-location">Venue · City</div>
+        <div class="cal-programme">
+          <span>Composer — Work</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  -->
+
+      <!-- ═══════════════════════════════════════════════════════
+       2025/26 SEASON  |  Sep 2025 - Aug 2026
+  ═══════════════════════════════════════════════════════ -->
+      <div class="season-block fade-in" id="season-2526">
+        <div class="season-label">2025/26 Season</div>
+
+        <div class="cal-row">
+          <div class="cal-date">Apr 12<br />2026</div>
+          <div class="cal-right">
+            <div class="cal-title">A Genialidade de Beethoven</div>
+            <div class="cal-ensemble">Orquestra do Algarve</div>
+            <div class="cal-location">Auditório Carlos do Carmo · Cineteatro Louletano</div>
+            <div class="cal-programme">
+              <span>Beethoven — Symphony no. 5</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="cal-row">
+          <div class="cal-date">Mar 1<br />2026</div>
+          <div class="cal-right">
+            <div class="cal-title">JODB Orchestra Course</div>
+            <div class="cal-ensemble">Jovem Orquestra do Distrito de Braga</div>
+            <div class="cal-location">Teatro Sá de Miranda, Braga</div>
+            <div class="cal-programme">
+              <span>Beethoven — Egmont Overture</span>
+              <span>Dvořák — Symphony no. 9</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="cal-row">
+          <div class="cal-date">Jan 21-24<br />Mar 5-8<br />2026</div>
+          <div class="cal-right">
+            <div class="cal-title">Animália</div>
+            <div class="cal-ensemble">Orquestra das Beiras</div>
+            <div class="cal-location">
+              Centro Cultural e de Congressos de Aveiro · Cineteatro de Estarreja · Cineteatro Alba
+            </div>
+            <div class="cal-programme">
+              <span class="soloist">Show presented and created by Sofia Nereida and António Miguel Teixeira</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="cal-row">
+          <div class="cal-date">Dec 28 –<br />Jan 7, 2026</div>
+          <div class="cal-right">
+            <div class="cal-title">NYO Shimmer Tour — Associate Conductor</div>
+            <div class="cal-ensemble">National Youth Orchestra of Great Britain</div>
+            <div class="cal-location">
+              Barbican Centre, London · Warwick Arts Centre · Nottingham Royal Concert Hall
+            </div>
+            <div class="cal-programme">
+              <span>Debussy — Ibéria</span>
+              <span>Karim Al-Zand — City Scenes</span>
+              <span>Anna Clyne — DANCE for cello and orchestra</span>
+              <span class="soloist">Inbal Segev, cello</span>
+              <span>Ravel — Rapsodie Espagnole</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="cal-row">
+          <div class="cal-date">Dec 19-21<br />2025</div>
+          <div class="cal-right">
+            <div class="cal-title">Christmas Concert</div>
+            <div class="cal-ensemble">Orquestra das Beiras</div>
+            <div class="cal-location">
+              Auditório Municipal de Gaia · Cineteatro de Estarreja · Auditório CAE Sever do Vouga
+            </div>
+            <div class="cal-programme">
+              <span class="soloist">Paulo Lapa and Rebeca Reinaldo, singers</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="cal-row">
+          <div class="cal-date">Nov 28<br />2025</div>
+          <div class="cal-right">
+            <div class="cal-title">
+              Sinfonietta de Braga convida Constança Simas, Drumming GP &amp; Francisco Fontes
+            </div>
+            <div class="cal-ensemble">Sinfonietta de Braga and Drumming GP</div>
+            <div class="cal-location">Auditório Adelina Caravana</div>
+            <div class="cal-programme">
+              <span>Bartók — Music for Strings, Percussion and Celeste</span>
+              <span>Francisco Fontes — Casa Alheia</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="cal-row">
+          <div class="cal-date">Sep 1-7<br />2025</div>
+          <div class="cal-right">
+            <div class="cal-title">Góis Summer Orchestra Course</div>
+            <div class="cal-location">Casa da Cultura de Góis · Auditório do Conservatório de Música de Coimbra</div>
+            <div class="cal-programme">
+              <span>Brahms — Academic Festival Overture</span>
+              <span>Tchaikovsky — Symphony no. 4</span>
+              <span>Cosma — Concerto for Euphonium and Orchestra</span>
+              <span class="soloist">José Pedro Galvão, euphonium</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end 2025/26 -->
+
+      <!-- ═══════════════════════════════════════════════════════
+       2024/25 SEASON  |  Sep 2024 - Aug 2025
+       9 events (newest first within season)
+  ═══════════════════════════════════════════════════════ -->
+      <div class="season-block fade-in" id="season-2425">
+        <div class="season-label">2024/25 Season</div>
+
+        <!-- Jul 14-18 2025 -->
+        <div class="cal-row">
+          <div class="cal-date">Jul 14-18<br />2025</div>
+          <div class="cal-right">
+            <div class="cal-title">Artamega Summer Orchestra Course</div>
+            <div class="cal-ensemble">Artamega</div>
+            <div class="cal-location">Marco de Canaveses</div>
+            <div class="cal-programme">
+              <span>Shostakovich - Symphony no. 5</span>
+              <span>Borodin - Prince Igor, Polovtsian Dances</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- May 18 2025 -->
+        <div class="cal-row">
+          <div class="cal-date">May 18<br />2025</div>
+          <div class="cal-right">
+            <div class="cal-title">Concerto Sopro Real</div>
+            <div class="cal-ensemble">Orquestra do Distrito de Braga</div>
+            <div class="cal-location">Igreja do Populo, Festival Internacional de Orgao de Braga</div>
+            <div class="cal-programme">
+              <span>Handel - Music for the Royal Fireworks</span>
+              <span>Salieri - Organ Concerto</span>
+              <span>Bach - Brandenburg Concerto no. 1</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- May 10-11 2025 -->
+        <div class="cal-row">
+          <div class="cal-date">May 10-11<br />2025</div>
+          <div class="cal-right">
+            <div class="cal-title">Maratonas com Orquestra de Bolso</div>
+            <div class="cal-ensemble">Orquestra sem Fronteiras</div>
+            <div class="cal-location">Monsanto e Idanha a Nova</div>
+            <div class="cal-programme">
+              <span>Mozart - Divertimento no. 10</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Apr 7-9 2025 -->
+        <div class="cal-row">
+          <div class="cal-date">Apr 7-9<br />2025</div>
+          <div class="cal-right">
+            <div class="cal-title">Residencia de Orquestra de Cordas</div>
+            <div class="cal-ensemble">Conservatorio Silva Marques</div>
+            <div class="cal-location">Alhandra</div>
+            <div class="cal-programme">
+              <span>Dvorak - Largo da Sinfonia do Novo Mundo</span>
+              <span>Norman Ward - Sombrero</span>
+              <span>Corelli - Concerto Grosso no. IV</span>
+              <span>Bartok arr. Willner - Romanian Folk Dances</span>
+              <span>Britten - Playful Pizzicato from Simple Symphony</span>
+              <span>Warlock - Capriol Suite</span>
+              <span>Meyer - Mantras</span>
+              <span>Bernofsky - Electric Sinfonia</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feb 22-24 2025 -->
+        <div class="cal-row">
+          <div class="cal-date">Feb 22-24<br />2025</div>
+          <div class="cal-right">
+            <div class="cal-title">NYO Open</div>
+            <div class="cal-ensemble">National Youth Orchestra of Great Britain</div>
+            <div class="cal-location">Blackpool Ballroom Tower</div>
+            <div class="cal-programme">
+              <span>Shostakovich - Festive Overture</span>
+              <span>Samuel Coleridge-Taylor - Romance for Violin (Larghetto)</span>
+              <span>Holst - Jupiter from The Planets</span>
+              <span>Charles Williams - Devil's Gallop</span>
+              <span>Marquez - Danzon no. 5</span>
+              <span>Stevie Wonder arr. Craig West - Sir Duke</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Jan 11 2025 -->
+        <div class="cal-row">
+          <div class="cal-date">Jan 11<br />2025</div>
+          <div class="cal-right">
+            <div class="cal-title">New Year's Eve Concert</div>
+            <div class="cal-ensemble">Orquestra POP Portuguesa</div>
+            <div class="cal-location">Academia Almadense</div>
+            <div class="cal-programme">
+              <span class="soloist"
+                >Mariana Castello-Branco (soprano), Christian Lujan (baritono), Carlos Damas (violino)</span
+              >
+              <span>Suppe - Abertura de Cavalaria Ligeira</span>
+              <span>J. Strauss II - Leichtes Blut, Polka schnell op. 319</span>
+              <span>J. Strauss II - Mein Herr Marquis (O Morcego)</span>
+              <span>Kreisler - Liebsleid e Liebesfreud</span>
+              <span>R. Strauss - Aria de Harlekin (Ariadne em Naxos)</span>
+              <span>J. Strauss II - Valsa do Imperador op. 437</span>
+              <span>J. Strauss II - Tritsch-Tratsch Polka op. 214</span>
+              <span>Hellmesberger Jr. - Danse Diabolique</span>
+              <span>J. Strauss II - Abertura de O Morcego</span>
+              <span>Lehar - O Vaterland (Viuva Alegre)</span>
+              <span>Kreisler - Schon Rosmarin e Marcha Miniatura Vienense</span>
+              <span>Lehar - Meine Lippen (Giuditta)</span>
+              <span>Lehar - Lippen schweigen (Viuva Alegre)</span>
+              <span>J. Strauss II - Auf der Jagd Polka op. 373</span>
+              <span>J. Strauss II - No Belo Danubio Azul op. 314</span>
+              <span>J. Strauss II - Unter Donner und Blitz op. 324</span>
+              <span>J. Strauss I - Radetzky March op. 228</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dec 14-21 2024 -->
+        <div class="cal-row">
+          <div class="cal-date">Dec 14-21<br />2024</div>
+          <div class="cal-right">
+            <div class="cal-title">Christmas Concert</div>
+            <div class="cal-ensemble">Orquestra do Algarve</div>
+            <div class="cal-location">
+              Grande Auditorio CGD Faro - Igreja de Quarteira - Auditorio Municipal de Albufeira - Teatro Joaquim
+              Benite, Almada
+            </div>
+            <div class="cal-programme">
+              <span>Samuel Coleridge-Taylor - Abertura de Natal</span>
+              <span>Franz Gruber - Silent Night</span>
+              <span>Bach - Aria da Suite Orquestral no. 3</span>
+              <span>Leopold Mozart - Schlittenfahrt</span>
+              <span>John Ireland - The Holy Boy</span>
+              <span>Mendelssohn - Hark! The Herald Angels Sing</span>
+              <span>Tchaikovsky - Valsa de Natal (As Estacoes)</span>
+              <span>Irving Berlin - White Christmas</span>
+              <span>Ralph Blane - Have Yourself a Merry Little Christmas</span>
+              <span>Leontovych - Carol of the Bells</span>
+              <span>Leroy Anderson - Sleigh Ride</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nov 7-10 2024 -->
+        <div class="cal-row">
+          <div class="cal-date">Nov 7-10<br />2024</div>
+          <div class="cal-right">
+            <div class="cal-title">European Doctors Orchestra - November Concert</div>
+            <div class="cal-ensemble">European Doctors Orchestra</div>
+            <div class="cal-location">The Glasshouse International Centre for Music, Newcastle</div>
+            <div class="cal-programme">
+              <span>Copland - Rodeo</span>
+              <span>Gershwin - An American in Paris</span>
+              <span>Poulenc - Gloria</span>
+              <span>Ravel - Alborada del Gracioso</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Oct 5-6 2024 -->
+        <div class="cal-row">
+          <div class="cal-date">Oct 5-6<br />2024</div>
+          <div class="cal-right">
+            <div class="cal-title">Ciclo Mendelssohn</div>
+            <div class="cal-ensemble">Orquestra Filarmonia das Beiras</div>
+            <div class="cal-location">Teatro Jose Lucio da Silva, Leiria - Teatro Viriato, Viseu</div>
+            <div class="cal-programme">
+              <span>Mendelssohn - Abertura "A Bela Melusina"</span>
+              <span>Mendelssohn - Concerto para Violino em Mi Menor</span>
+              <span class="soloist">Matilde Margalho, violin</span>
+              <span>Mendelssohn - Sinfonia no. 4 "Italiana"</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end 2024/25 -->
+
+      <!-- ═══════════════════════════════════════════════════════
+       2023/24 SEASON  |  Sep 2023 - Aug 2024
+       8 events (newest first within season)
+  ═══════════════════════════════════════════════════════ -->
+      <div class="season-block fade-in" id="season-2324">
+        <div class="season-label">2023/24 Season</div>
+
+        <!-- Jun 15 2024 -->
+        <div class="cal-row">
+          <div class="cal-date">Jun 15<br />2024</div>
+          <div class="cal-right">
+            <div class="cal-title">Coimbra Conservatory Soloist Winners 2024</div>
+            <div class="cal-ensemble">Orquestra Classica do Centro</div>
+            <div class="cal-location">Grande Auditorio do Conservatorio de Coimbra</div>
+            <div class="cal-programme">
+              <span>Kurpinski - Clarinet Concerto <span class="soloist">- Francisca Machado</span></span>
+              <span>Bach - Harpsichord Concerto <span class="soloist">- Pedro Borges</span></span>
+              <span>Mendelssohn - Violin Concerto <span class="soloist">- Joao Bastos</span></span>
+              <span>Koussevitzky - Double Bass Concerto <span class="soloist">- Mario Ferreira</span></span>
+              <span>Rossini - Bassoon Concerto <span class="soloist">- Tomas Lyckfeldt</span></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mar 9 2024 -->
+        <div class="cal-row">
+          <div class="cal-date">Mar 9<br />2024</div>
+          <div class="cal-right">
+            <div class="cal-title">Women's Day Concert</div>
+            <div class="cal-ensemble">Orquestra Classica do Centro</div>
+            <div class="cal-location">Pavilhao de Portugal</div>
+            <div class="cal-programme">
+              <span>Mozart - Flute Concerto K. 313</span>
+              <span class="soloist">Mafalda Carvalho, flute</span>
+              <span>Louise Farrenc - Symphony no. 3</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Jan 25-26 2024 -->
+        <div class="cal-row">
+          <div class="cal-date">Jan 25-26<br />2024</div>
+          <div class="cal-right">
+            <div class="cal-title">WoCo Gateshead 2023-24</div>
+            <div class="cal-ensemble">Royal Northern Sinfonia</div>
+            <div class="cal-location">Sage Gateshead, Newcastle</div>
+            <div class="cal-programme">
+              <span>Farrenc - Symphony no. 3</span>
+              <span>Mozart - La Clemenza di Tito Overture</span>
+              <span>Stravinsky - Pulcinella</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dec 4-7 2023 -->
+        <div class="cal-row">
+          <div class="cal-date">Dec 4-7<br />2023</div>
+          <div class="cal-right">
+            <div class="cal-title">Assistant Conductor Audition and Final - Real Filharmonia de Galicia</div>
+            <div class="cal-ensemble">Real Filharmonia de Galicia</div>
+            <div class="cal-location">Auditorio de Galicia - Final of four out of 111 candidates</div>
+            <div class="cal-programme">
+              <span>Beethoven - Symphony no. 2</span>
+              <span>Stravinsky - Dumbarton Oaks</span>
+              <span>Hugo Gomez-Chao - Schattenhaft</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nov 26 - Dec 2 2023 -->
+        <div class="cal-row">
+          <div class="cal-date">Nov 26 -<br />Dec 2, 2023</div>
+          <div class="cal-right">
+            <div class="cal-title">Masterclass with Marin Alsop</div>
+            <div class="cal-ensemble">Ireland's National Symphony Orchestra</div>
+            <div class="cal-location">National Concert Hall, Dublin - Masterclass and assistant conductor</div>
+            <div class="cal-programme">
+              <span>Stravinsky - Rite of Spring</span>
+              <span>Beethoven - Leonore Overture III</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nov 21-24 2023 -->
+        <div class="cal-row">
+          <div class="cal-date">Nov 21-24<br />2023</div>
+          <div class="cal-right">
+            <div class="cal-title">Brahms' Second Piano Concerto - Assistant Conductor</div>
+            <div class="cal-ensemble">Royal Northern Sinfonia</div>
+            <div class="cal-location">Middlesbrough Town Hall (23 Nov) - Sage Gateshead (24 Nov)</div>
+            <div class="cal-programme">
+              <span>Brahms - Piano Concerto no. 2</span>
+              <span class="soloist">Sunwook Kim, piano | Dinis Sousa, conductor</span>
+              <span>Juste Januliyte - Elongation of Nights</span>
+              <span>Schumann - Symphony no. 4</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Oct 21-29 2023 -->
+        <div class="cal-row">
+          <div class="cal-date">Oct 21-29<br />2023</div>
+          <div class="cal-right">
+            <div class="cal-title">NYO Inspire Orchestra</div>
+            <div class="cal-ensemble">National Youth Orchestra of Great Britain Inspire</div>
+            <div class="cal-location">Tour: Northampton, Sheffield, Bristol, Brighton, London, Lancaster</div>
+            <div class="cal-programme">
+              <span>Copland - Four Dance Episodes from Rodeo</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Oct 10-15 2023 -->
+        <div class="cal-row">
+          <div class="cal-date">Oct 10-15<br />2023</div>
+          <div class="cal-right">
+            <div class="cal-title">Haizebegi Festival 2023</div>
+            <div class="cal-ensemble">Zohra Orchestra</div>
+            <div class="cal-location">Anglet, Grande salle du Theatre du Quintaou - San Sebastian, Musikene</div>
+            <div class="cal-programme">
+              <span>Traditional Afghan Music</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end 2023/24 -->
+
+      <!-- ═══════════════════════════════════════════════════════
+       2022/23 SEASON  |  Sep 2022 - Aug 2023
+       13 events (newest first within season)
+  ═══════════════════════════════════════════════════════ -->
+      <div class="season-block fade-in" id="season-2223">
+        <div class="season-label">2022/23 Season</div>
+
+        <!-- Aug 22-27 2023 -->
+        <div class="cal-row">
+          <div class="cal-date">Aug 22-27<br />2023</div>
+          <div class="cal-right">
+            <div class="cal-title">Britten Pears Young Artist Programme</div>
+            <div class="cal-ensemble">Snape Maltings</div>
+            <div class="cal-location">Workshop tutored by Sian Edwards</div>
+            <div class="cal-programme">
+              <span>Oliver Leith - Last Days</span>
+              <span>Bushra El-Turk - Women at Point Zero</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Jul 17-23 2023 -->
+        <div class="cal-row">
+          <div class="cal-date">Jul 17-23<br />2023</div>
+          <div class="cal-right">
+            <div class="cal-title">Masterclass with Johannes Schlaefli</div>
+            <div class="cal-ensemble">Alto Minho Youth Orchestra</div>
+            <div class="cal-location">Masterclass with Prof. Johannes Schlaefli</div>
+            <div class="cal-programme">
+              <span>Beethoven - Symphony no. 5</span>
+              <span>Beethoven - Symphony no. 7</span>
+              <span>Beethoven - Symphony no. 3</span>
+              <span>Dvorak - Symphony no. 9</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Jul 8-14 2023 -->
+        <div class="cal-row">
+          <div class="cal-date">Jul 8-14<br />2023</div>
+          <div class="cal-right">
+            <div class="cal-title">NYO Inspire Orchestra</div>
+            <div class="cal-ensemble">National Youth Orchestra of Great Britain Inspire</div>
+            <div class="cal-location">Schools Tour, Newcastle</div>
+            <div class="cal-programme">
+              <span>Bernstein - Symphonic Dances from West Side Story</span>
+              <span>Marquez - Danzon no. 2</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Jun 29 2023 -->
+        <div class="cal-row">
+          <div class="cal-date">Jun 29<br />2023</div>
+          <div class="cal-right">
+            <div class="cal-title">Viagens Maravilhosas de Peer Gynt</div>
+            <div class="cal-ensemble">Orquestra Gulbenkian</div>
+            <div class="cal-location">Centro Cultural das Caldas da Rainha</div>
+            <div class="cal-programme">
+              <span>Schumann - Concerto para Violoncelo em La Menor</span>
+              <span>Mozart - Concerto para Oboe K. 314</span>
+              <span>Grieg - Peer Gynt Suite no. 1</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Jun 24-25 2023 -->
+        <div class="cal-row">
+          <div class="cal-date">Jun 24-25<br />2023</div>
+          <div class="cal-right">
+            <div class="cal-title">Maratonas com Orquestra de Bolso</div>
+            <div class="cal-ensemble">Orquestra sem Fronteiras</div>
+            <div class="cal-location">Castelo Branco</div>
+            <div class="cal-programme">
+              <span>Wagner - Siegfried Idyll</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- May 29-30 2023 -->
+        <div class="cal-row">
+          <div class="cal-date">May 29-30<br />2023</div>
+          <div class="cal-right">
+            <div class="cal-title">WoCo Gateshead 2022-23</div>
+            <div class="cal-ensemble">Royal Northern Sinfonia</div>
+            <div class="cal-location">Sage Gateshead, Newcastle</div>
+            <div class="cal-programme">
+              <span>Mendelssohn - Hebrides Overture</span>
+              <span>Beethoven - Symphony no. 8</span>
+              <span>Britten - Sinfonietta for Chamber Orchestra</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Apr 7-18 2023 -->
+        <div class="cal-row">
+          <div class="cal-date">Apr 7-18<br />2023</div>
+          <div class="cal-right">
+            <div class="cal-title">NYO Spring Residency - Associate Conductor</div>
+            <div class="cal-ensemble">National Youth Orchestra of Great Britain</div>
+            <div class="cal-location">
+              Royal Festival Hall (15 Apr) - Schools Tour (17-18 Apr) - working with Andre Gourlay
+            </div>
+            <div class="cal-programme">
+              <span>Stravinsky - The Firebird (complete ballet)</span>
+              <span>Adam Gorb - Omaggio a Gabrielli</span>
+              <span>R. Strauss - Suite for WW, Gavotte</span>
+              <span>Simmy Singh - The Flippen</span>
+              <span>Bacewicz - Concerto for String Orchestra, mvt. 3</span>
+              <span>Jessie Montgomery - Source Code</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Apr 1-3 2023 -->
+        <div class="cal-row">
+          <div class="cal-date">Apr 1-3<br />2023</div>
+          <div class="cal-right">
+            <div class="cal-title">NYO Inspire Orchestra</div>
+            <div class="cal-ensemble">National Youth Orchestra of Great Britain Inspire</div>
+            <div class="cal-location">Tour: Newcastle, Sheffield, Birmingham</div>
+            <div class="cal-programme">
+              <span>Marquez - Danzon no. 2</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mar 25 2023 -->
+        <div class="cal-row">
+          <div class="cal-date">Mar 25<br />2023</div>
+          <div class="cal-right">
+            <div class="cal-title">Descobrir Louise Farrenc</div>
+            <div class="cal-ensemble">Orquestra Classica do Sul</div>
+            <div class="cal-location">Auditorio Municipal de Albufeira (Evora programme)</div>
+            <div class="cal-programme">
+              <span>Sibelius - Romance em Do Maior</span>
+              <span>Sibelius - Pelleas et Melisande</span>
+              <span>Mozart - Abertura de Idomeneo</span>
+              <span>Farrenc - Sinfonia no. 3 em Sol Menor</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mar 17 2023 -->
+        <div class="cal-row">
+          <div class="cal-date">Mar 17<br />2023</div>
+          <div class="cal-right">
+            <div class="cal-title">Descobrir Louise Farrenc</div>
+            <div class="cal-ensemble">Orquestra Classica do Sul</div>
+            <div class="cal-location">Auditorio Municipal de Albufeira</div>
+            <div class="cal-programme">
+              <span>Sibelius - Romance em Do Maior</span>
+              <span>Sibelius - Pelleas et Melisande</span>
+              <span>Mozart - Abertura de Idomeneo</span>
+              <span>Farrenc - Sinfonia no. 3 em Sol Menor</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feb 11 2023 -->
+        <div class="cal-row">
+          <div class="cal-date">Feb 11<br />2023</div>
+          <div class="cal-right">
+            <div class="cal-title">Beethoven, Lekeu &amp; Mozart</div>
+            <div class="cal-ensemble">Orquestra do Norte</div>
+            <div class="cal-location">Igreja de S. Goncalo, Amarante</div>
+            <div class="cal-programme">
+              <span>Mozart - Abertura "La Clemenza di Tito" KV 621</span>
+              <span>Lekeu - Adagio para Cordas op. 3</span>
+              <span>Beethoven - Sinfonia no. 4 em Sib Maior</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Jan 18-19 2023 -->
+        <div class="cal-row">
+          <div class="cal-date">Jan 18-19<br />2023</div>
+          <div class="cal-right">
+            <div class="cal-title">WoCo Gateshead 2022-23</div>
+            <div class="cal-ensemble">Royal Northern Sinfonia</div>
+            <div class="cal-location">Sage Gateshead, Newcastle</div>
+            <div class="cal-programme">
+              <span>Mendelssohn - Symphony no. 4</span>
+              <span>Barber - Violin Concerto</span>
+              <span>Bartok - Romanian Dances</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dec 7-9 2022 -->
+        <div class="cal-row">
+          <div class="cal-date">Dec 7-9<br />2022</div>
+          <div class="cal-right">
+            <div class="cal-title">Concerto de Fim de Ano - Maestrina Assistente</div>
+            <div class="cal-ensemble">Orquestra sem Fronteiras</div>
+            <div class="cal-location">Museu do Dinheiro, Lisboa</div>
+            <div class="cal-programme">
+              <span>Scarlatti - Sinfonia no. 2 em Sol Maior</span>
+              <span>Bach - Suite para Orquestra em Re Maior BWV 1068</span>
+              <span>Handel - Water Music, Suite no. 2 em Re Maior HWV 349</span>
+              <span>Scarlatti - Fandango</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nov 9-12 2022 -->
+        <div class="cal-row">
+          <div class="cal-date">Nov 9-12<br />2022</div>
+          <div class="cal-right">
+            <div class="cal-title">Towards a New Dramaturgy?</div>
+            <div class="cal-ensemble">Dutch National Opera &amp; Ballet</div>
+            <div class="cal-location">Workshop mentored by Luc Joosten &amp; Wout van Tongeren</div>
+          </div>
+        </div>
+
+        <!-- Nov 4 - Nov 26 2022 -->
+        <div class="cal-row">
+          <div class="cal-date">Nov 4-26<br />2022</div>
+          <div class="cal-right">
+            <div class="cal-title">Lugar Comum - Music Director</div>
+            <div class="cal-ensemble">Quarteto Contratempus</div>
+            <div class="cal-location">Teatro Rivoli, Porto</div>
+            <div class="cal-programme">
+              <span>Sofia Sousa Rocha - Lugar Comum (opera, world premiere)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Oct 13 2022 -->
+        <div class="cal-row">
+          <div class="cal-date">Oct 13<br />2022</div>
+          <div class="cal-right">
+            <div class="cal-title">Habs Festival Concert</div>
+            <div class="cal-ensemble">Haberdashers Boys and Girls Orchestra</div>
+            <div class="cal-programme">
+              <span>Brahms - Academic Festival Overture</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sep 29 2022 -->
+        <div class="cal-row">
+          <div class="cal-date">Sep 29<br />2022</div>
+          <div class="cal-right">
+            <div class="cal-title">Indianapolis Symphony Orchestra - Assistant Conductor Final</div>
+            <div class="cal-ensemble">Indianapolis Symphony Orchestra</div>
+            <div class="cal-location">Hilbert Circle Theatre - Finalist (4 of 111)</div>
+            <div class="cal-programme">
+              <span>Beethoven - Symphony no. 5, mvts. 1 and 3</span>
+              <span>Debussy - Prelude to the Afternoon of a Faun</span>
+              <span>J. Strauss II - Blue Danube Waltz</span>
+              <span>Sarasate - Zigeunerweisen <span class="soloist">Kevin Lin, concertmaster, soloist</span></span>
+              <span>Mahler - Symphony no. 5, mvt. 4 Adagietto</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sep 9 - Oct 9 2022 -->
+        <div class="cal-row">
+          <div class="cal-date">Sep 9 -<br />Oct 9, 2022</div>
+          <div class="cal-right">
+            <div class="cal-title">Cherry Town with WNO - Assistant Conductor</div>
+            <div class="cal-ensemble">Welsh National Opera</div>
+            <div class="cal-location">Donald Gordon Theatre, Cardiff - Conductor: Alice Farnham</div>
+            <div class="cal-programme">
+              <span>Shostakovich - Cheryomushki (opera)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sep 3 2022 -->
+        <div class="cal-row">
+          <div class="cal-date">Sep 3<br />2022</div>
+          <div class="cal-right">
+            <div class="cal-title">Summer Concert</div>
+            <div class="cal-ensemble">Orquestra Classica do Centro</div>
+            <div class="cal-location">Mosteiro de Alcobaca</div>
+            <div class="cal-programme">
+              <span>Elgar - Enigma Variations (excerpts)</span>
+              <span>Beethoven - Egmont Overture</span>
+              <span>Ravel - Ma Mere l'Oye</span>
+              <span>Vivaldi - Four Seasons</span>
+              <span>Handel - Water Music</span>
+              <span>Mendelssohn - A Midsummer Night's Dream</span>
+              <span>Mozart - Exsultate Jubilate; Vesperae solennes de confessore; Mass in C</span>
+              <span>Faure - Pavane</span>
+              <span>Wagner - Siegfried Idyll</span>
+              <span>Schubert - Ave Maria</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end 2022/23 -->
+    </section>
+
+    <!-- VIDEOS -->
+    <section id="videos">
+      <h2 class="fade-in">Videos</h2>
+      <div class="videos-grid">
+        <div class="video-card fade-in">
+          <div class="video-embed">
+            <iframe
+              src="https://www.youtube.com/embed/hX8YqO7Bv1s"
+              loading="lazy"
+              allowfullscreen
+              title="Tchaikovsky - Symphony no. 4"
+            ></iframe>
+          </div>
+          <div class="video-caption">
+            <p>Tchaikovsky, <em>Symphony no. 4</em></p>
+            <div class="video-orch">Góis Orchestra Summer Academy</div>
+          </div>
+        </div>
+
+        <div class="video-card fade-in" style="transition-delay: 0.08s">
+          <div class="video-embed">
+            <iframe
+              src="https://www.youtube.com/embed/PFZoqXC_dwQ"
+              loading="lazy"
+              allowfullscreen
+              title="Stravinsky - Pulcinella"
+            ></iframe>
+          </div>
+          <div class="video-caption">
+            <p>Stravinsky, <em>Pulcinella</em></p>
+            <div class="video-orch">Royal Northern Sinfonia</div>
+          </div>
+        </div>
+
+        <div class="video-card fade-in" style="transition-delay: 0.16s">
+          <div class="video-embed">
+            <iframe
+              src="https://www.youtube.com/embed/6o9a5-071tM"
+              loading="lazy"
+              allowfullscreen
+              title="Gershwin - An American in Paris"
+            ></iframe>
+          </div>
+          <div class="video-caption">
+            <p>Gershwin, <em>An American in Paris</em></p>
+            <div class="video-orch">European Doctors Orchestra</div>
+          </div>
+        </div>
+
+        <div class="video-card fade-in" style="transition-delay: 0.24s">
+          <div class="video-embed">
+            <iframe
+              src="https://www.youtube.com/embed/32jozSqZ6ko"
+              loading="lazy"
+              allowfullscreen
+              title="Mendelssohn - Italian Symphony"
+            ></iframe>
+          </div>
+          <div class="video-caption">
+            <p>Mendelssohn, <em>Italian Symphony</em></p>
+            <div class="video-orch">Orquestra Filarmonia das Beiras</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <h2 class="fade-in">Contact</h2>
+      <p class="fade-in">For professional enquiries:</p>
+      <a href="mailto:constancasimas.office@gmail.com" class="fade-in">constancasimas.office@gmail.com</a>
+      <div class="contact-photo fade-in">
+        <!--
+      CONTACT PHOTO: Save your photo as "photo-contact.jpg" in the same folder as index.html.
+      This can be a different portrait from the home page, or the same one.
+    -->
+        <img
+          src="photo-contact.jpg"
+          alt="Constança Simas"
+          onerror="this.outerHTML='<div class='contact-photo-placeholder'><span>Save as photo-contact.jpg</span></div>'"
+        />
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <img src="logo.jpg" alt="Constança Simas logo" onerror="this.style.display='none'" />
+      &copy; Constança Simas
+    </footer>
+    <!-- STICKY SEASON NAV -->
+    <div class="season-nav" id="season-nav">
+      <ul>
+        <!-- <li><a class="season-pill" href="#season-2627">2026/27</a></li> -->
+        <li><a class="season-pill" href="#season-2526">2025/26</a></li>
+        <li><a class="season-pill" href="#season-2425">2024/25</a></li>
+        <li><a class="season-pill" href="#season-2324">2023/24</a></li>
+        <li><a class="season-pill" href="#season-2223">2022/23</a></li>
+      </ul>
+    </div>
+    <script>
+      var NAV_H = 70;
+
+      // Smooth scroll
+      document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+        link.addEventListener('click', function (e) {
+          var target = document.querySelector(link.getAttribute('href'));
+          if (!target) return;
+          e.preventDefault();
+          window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - NAV_H, behavior: 'smooth' });
+          closeMobile();
+        });
+      });
+
+      // Nav shadow
+      var navbar = document.getElementById('navbar');
+      window.addEventListener(
+        'scroll',
+        function () {
+          navbar.classList.toggle('scrolled', window.scrollY > 10);
+        },
+        { passive: true }
+      );
+
+      // Hamburger
+      var hamburger = document.getElementById('hamburger');
+      var mobileMenu = document.getElementById('mobileMenu');
+      hamburger.addEventListener('click', function () {
+        hamburger.classList.toggle('open');
+        mobileMenu.classList.toggle('open');
+      });
+      function closeMobile() {
+        hamburger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+      }
+
+      // Fade-in on scroll
+      var observer = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) e.target.classList.add('visible');
+          });
+        },
+        { threshold: 0.08 }
+      );
+      document.querySelectorAll('.fade-in').forEach(function (el) {
+        observer.observe(el);
+      });
+
+      // Language toggle
+      function setLang(lang) {
+        document.querySelectorAll('.lang-content').forEach(function (el) {
+          el.classList.remove('active');
+        });
+        document.querySelectorAll('.lang-btn').forEach(function (btn) {
+          btn.classList.remove('active');
+        });
+        document.getElementById('about-' + lang).classList.add('active');
+        event.target.classList.add('active');
+      }
+
+      // Sticky season nav
+      var seasonNav = document.getElementById('season-nav');
+      var calSection = document.getElementById('calendar');
+      var seasonPills = document.querySelectorAll('.season-pill');
+      var seasonIds = [
+        'season-2526',
+        'season-2425',
+        'season-2324',
+        'season-2223',
+      ]; /* add 'season-2627' when 2026/27 season is uncommented */
+
+      function updateSeasonNav() {
+        if (!calSection) return;
+        var rect = calSection.getBoundingClientRect();
+        var inView = rect.top < window.innerHeight && rect.bottom > 0;
+        seasonNav.classList.toggle('visible', inView);
+        var active = null;
+        seasonIds.forEach(function (id) {
+          var el = document.getElementById(id);
+          if (el && el.getBoundingClientRect().top <= window.innerHeight * 0.4) {
+            active = id;
+          }
+        });
+        seasonPills.forEach(function (pill) {
+          pill.classList.toggle('active', pill.getAttribute('href') === '#' + active);
+        });
+      }
+
+      window.addEventListener('scroll', updateSeasonNav, { passive: true });
+      updateSeasonNav();
+    </script>
+  </body>
+</html>
